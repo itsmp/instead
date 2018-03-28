@@ -64,20 +64,30 @@
         var blockUI = document.createElement("div");
         blockUI.setAttribute("id", "blocker");
         blockUI.innerHTML = `
-            <div class="blocker-title">
-                요청 진행중
+            <div class="blocker-container">
                 <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+                <div class="blocker-title">요청 진행중</div>
             </div>
             <style>
                 #blocker{
                     position: fixed;top: 0;left: 0;width: 100%;height: 100%;opacity: .5;background-color: #000;z-index: 99999;overflow: hidden;
                 }
+                .blocker-container{
+                    //position: absolute;top: 50%;left: 50%;width: 5.5em;height: 2em;margin: -1em 0 0 -2.5em;color: #fff;font-weight: bold;
+                    display:flex;
+                    flex-direction:column;
+                    width:100%;
+                    height:100%;
+                    margin:0;
+                    align-items:center;
+                    justify-content:center;
+                }
                 .blocker-title{
-                    position: absolute;top: 50%;left: 50%;width: 5.5em;height: 2em;margin: -1em 0 0 -2.5em;color: #fff;font-weight: bold;
+                    align-self:center;
                 }
                 .lds-ring {
-                    display: inline-block;
-                    position: relative;
+                    display: flex;
+                    // position: relative;
                     width: 64px;
                     height: 64px;
                     top: -85px;
