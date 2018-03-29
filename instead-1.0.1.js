@@ -48,7 +48,7 @@
             }
             if(_.data.result == 'closed'){
                 if(document.getElementById("blocker"))
-                    document.getElementById("blocker").style.display = "none";
+                    document.getElementById("blocker").remove();
             }
         };
         req.onreadystatechange = function() {
@@ -59,7 +59,16 @@
         };
         req.send(JSON.stringify(input));
     }
-
+    Element.prototype.remove = function() {
+        this.parentElement.removeChild(this);
+    }
+    NodeList.prototype.remove = HTMLCollection.prototype.remove = function() {
+        for(var i = this.length - 1; i >= 0; i--) {
+            if(this[i] && this[i].parentElement) {
+                this[i].parentElement.removeChild(this[i]);
+            }
+        }
+    }
     function uiBlock() { 
         var blockUI = document.createElement("div");
         blockUI.setAttribute("id", "blocker");
@@ -116,10 +125,10 @@
                 }
                 @keyframes lds-ring {
                     0% {
-                    transform: rotate(0deg);
+                        transform: rotate(0deg);
                     }
                     100% {
-                    transform: rotate(360deg);
+                        transform: rotate(360deg);
                     }
                 }
             </style>`;
